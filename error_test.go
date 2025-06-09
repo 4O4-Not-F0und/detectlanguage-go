@@ -3,7 +3,7 @@ package detectlanguage_test
 import (
 	"testing"
 
-	"github.com/detectlanguage/detectlanguage-go"
+	"github.com/4O4-Not-F0und/detectlanguage-go"
 	"github.com/stretchr/testify/assert"
 )
 

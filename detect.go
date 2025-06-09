@@ -1,5 +1,7 @@
 package detectlanguage
 
+import "context"
+
 // DetectRequest contains language detection request params
 type DetectRequest struct {
 	Query string `json:"q"`
@@ -38,9 +40,9 @@ type DetectBatchResponseData struct {
 }
 
 // Detect executes language detection for a single text
-func (c *Client) Detect(in string) (out []*DetectionResult, err error) {
+func (c *Client) Detect(ctx context.Context, in string) (out []*DetectionResult, err error) {
 	var response DetectResponse
-	err = c.post(nil, "detect", &DetectRequest{Query: in}, &response)
+	err = c.post(ctx, "detect", &DetectRequest{Query: in}, &response)
 
 	if err != nil {
 		return nil, err
@@ -50,8 +52,8 @@ func (c *Client) Detect(in string) (out []*DetectionResult, err error) {
 }
 
 // DetectCode executes language detection for a single text and returns detected language code
-func (c *Client) DetectCode(in string) (out string, err error) {
-	detections, err := c.Detect(in)
+func (c *Client) DetectCode(ctx context.Context, in string) (out string, err error) {
+	detections, err := c.Detect(ctx, in)
 
 	if err != nil {
 		return "", err
@@ -66,9 +68,9 @@ func (c *Client) DetectCode(in string) (out string, err error) {
 
 // DetectBatch executes language detection with multiple texts.
 // It is significantly faster than doing a separate request for each text indivdually.
-func (c *Client) DetectBatch(in []string) (out [][]*DetectionResult, err error) {
+func (c *Client) DetectBatch(ctx context.Context, in []string) (out [][]*DetectionResult, err error) {
 	var response DetectBatchResponse
-	err = c.post(nil, "detect", &DetectBatchRequest{Query: in}, &response)
+	err = c.post(ctx, "detect", &DetectBatchRequest{Query: in}, &response)
 
 	if err != nil {
 		return nil, err

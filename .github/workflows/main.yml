@@ -6,9 +6,7 @@ jobs:
     strategy:
       matrix:
         go-version:
-          - "1.14"
-          - "1.17"
-          - "1.18"
+          - "1.24"
     name: Go ${{ matrix.go-version }} sample
     steps:
       - uses: actions/checkout@v3
