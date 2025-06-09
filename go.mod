@@ -1,4 +1,4 @@
-module github.com/detectlanguage/detectlanguage-go
+module github.com/4O4-Not-F0und/detectlanguage-go
 
 go 1.13
 
